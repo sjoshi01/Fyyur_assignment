@@ -143,7 +143,7 @@ def show_venue(venue_id):
   # TODO: replace with real venue data from the venues table, using venue_id
   venueResult= Venue.query.filter_by(id=venue_id).first()
   shows_info= Show.query.filter_by(venue_id=venueResult.id).all()
-  setattr(venueResult,'past_shows',[])
+  setattr(venueResult,'past_shows',[]) ## Add attributes to append only shows information, no need to add venue object info again
   setattr(venueResult,'upcoming_shows',[])
   number_past_shows = 0
   number_upcoming_shows = 0
@@ -260,6 +260,7 @@ def search_artists():
 def show_artist(artist_id):
   # shows the venue page with the given venue_id
   # TODO: replace with real venue data from the venues table, using venue_id
+  ########Same as venue
   artistResult= Artist.query.filter_by(id=artist_id).first()
   shows_info= Show.query.filter_by(artist_id=artistResult.id).all()
   setattr(artistResult,'past_shows',[])
