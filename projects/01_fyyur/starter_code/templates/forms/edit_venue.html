@@ -26,17 +26,53 @@
       <div class="form-group">
           <label for="phone">Phone</label>
           {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true) }}
+          {% if form.phone.errors %}
+          <ul class="errors">
+            {% for error in form.phone.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
         </div>
       <div class="form-group">
         <label for="genres">Genres</label>
         <small>Ctrl+Click to select multiple</small>
-        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.state, autofocus = true) }}
+        <div class="form-inline">
+          {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.genres, autofocus = true) }}
+        </div>
       </div>
       <div class="form-group">
           <label for="genres">Facebook Link</label>
-          {{ form.facebook_link(class_ = 'form-control', placeholder='http://', id=form.state, autofocus = true) }}
+          <div class="form-inline">
+           {{ form.facebook_link(class_ = 'form-control', placeholder='http://', id=form.facebook_link, autofocus = true) }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="website">Website Link</label>
+          <div class="form-inline">
+          {{ form.website(type="text", class_='form-control', placeholder='http://', id=form.website, autofocus = true) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="image_link">Image Link</label>
+        <div class="form-inline">
+          {{ form.image_link(type="text", class_='form-control', placeholder='http://', id=form.image_link, autofocus = true) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="seeking_talent">Seeking talent</label>
+        <div class="form-inline">
+         {{ form.seeking_talent(class_ = 'form-control', id=form.seeking_talent)}}
+         </div>
+      </div>
+      <div class="form-group">
+        <label>Seeking Description</label>
+        <div class="form-inline">
+          {{ form.seeking_description(class_ = 'form-control', placeholder='Description', id=form.seeking_description, autofocus = true) }}
+        </div>
         </div>
       <input type="submit" value="Edit Venue" class="btn btn-primary btn-lg btn-block">
+      {{ form.csrf_token() }}
     </form>
   </div>
 {% endblock %}

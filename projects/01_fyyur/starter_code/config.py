@@ -11,4 +11,5 @@ DEBUG = True
 
 
 # TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = 'postgres://sayali@localhost:5432/fyyurapp'
+SQLALCHEMY_DATABASE_URI = 'postgres://sayali@localhost:5432/fyyurappdb'
+SQLALCHEMY_TRACK_MODIFICATIONS = False   ## Added to make sure no double quotes were added to table names
