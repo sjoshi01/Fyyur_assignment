@@ -80,6 +80,7 @@ state_choices=[
             ('WY', 'WY'),
         ]
 
+
 class ShowForm(FlaskForm):
     artist_id = StringField(
         'artist_id'
@@ -107,9 +108,15 @@ class VenueForm(FlaskForm):
         'address', validators=[DataRequired()]
     )
        
+    def validate_phone(self, phone):
+        us_phone_num = '^([0-9]{3})[-][0-9]{3}[-][0-9]{4}$'
+        match = re.search(us_phone_num, phone.data)
+        print(phone)
+        if not match:
+            raise ValidationError('Error, phone number must be include only numbers in xxx-xxx-xxxx format')
 
     phone = StringField(
-        'phone',validators=[DataRequired(),Length(min=10,max=10)]
+        'phone',validators=[DataRequired(),Length(min=12,max=12),validate_phone]
     )
 
     image_link = StringField(
@@ -143,8 +150,15 @@ class ArtistForm(FlaskForm):
         'state', validators=[DataRequired()],choices=state_choices
     )
    
+    def validate_phone(self, phone):
+        us_phone_num = '^([0-9]{3})[-][0-9]{3}[-][0-9]{4}$'
+        match = re.search(us_phone_num, phone.data)
+        print(phone)
+        if not match:
+            raise ValidationError('Error, phone number must be include only numbers in xxx-xxx-xxxx format')
+
     phone = StringField(
-     'phone',validators=[DataRequired(),Length(min=10,max=10)]
+     'phone',validators=[DataRequired(),Length(min=12,max=12),validate_phone]
     )
     image_link = StringField(
         'image_link', validators=[URL(message='Must be a valid URL')]

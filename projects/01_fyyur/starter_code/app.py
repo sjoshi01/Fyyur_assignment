@@ -173,7 +173,7 @@ def create_venue_submission():
       return render_template('pages/home.html')
    else:
       flash('Venue ' + request.form['name'] +
-        'failed due to validation error and could not be posted!')
+        ' failed due to validation error and could not be posted!')
       return render_template('forms/new_venue.html', form=form)
   # TODO: insert form data as a new Venue record in the db, instead
   # TODO: modify data to be the data object returned from db insertion
